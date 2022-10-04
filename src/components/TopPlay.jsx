@@ -10,7 +10,8 @@ import 'swiper/css'
 import 'swiper/css/free-mode';
 
 
-const TopChartCard = ({song,i}) => (
+const TopChartCard = ({song,i , isPlaying, activeSong,
+handlePauseClick, handlePlayClick}) => (
   <div className="w-full flex-row items-center hover:bg-
   [#4c426e] py-2 p-4 rounded-lg cursor-pointer
   mb-2">
@@ -24,8 +25,17 @@ alt={"song?.title"}/>
 <Link to={`/songs/${song.key}`}>
 <p className="text-xl font-bold text-white">{song?.title}</p>
 </Link>
+<Link to={`/artists/${song?.artists[0].adamid}`}>
+<p className="text-base text-gray-300 mt-1">{song?.subtitle}</p>
+</Link>
 </div>
  </div>
+ <PlayPause
+ isPlaying={isPlaying}
+ activeSong={activeSong}
+ song={song}
+handlePause={handlePauseClick}
+ />
   </div>
 )
 
@@ -50,7 +60,7 @@ const handlePauseClick = () => {
   dispatch(playPause(false));
 }
 
-const handlePlayClick = () => {
+const handlePlayClick = (song, i) => {
 dispatch(setActiveSong({song, data, i}))
 dispatch(playPause(true));
 }
@@ -76,6 +86,10 @@ return (
         key={song.key}
         song = {song}
            i = {i}
+           isplaying={isPlaying}
+           activeSong={activeSong}
+           handlePauseClick={handlePauseClick}
+           handlePlayClick={()=>handlePlayClick(song,i)}
         />
            
       ))}
