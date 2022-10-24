@@ -31,7 +31,7 @@ import { createApi,fetchBaseQuery } from '@reduxjs/toolkit/query/react';
         getSongsByCountry: builder.query({query:(countryCode)=>`/
         charts/country?country_code=${countryCode}`})
         
-        getSongsBySearch: builder.query({query:(searchterm)=>`/
+        getSongsBySearch: builder.query({query:(searchTerm)=>`/
         search/multi?search_type=SONGS_ARTISTS&query=${searchTerm}`})
       }),
     });
